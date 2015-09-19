@@ -5,48 +5,10 @@
 # Author: Chris Barry <chris@barry.im>
 # License:  Creative Commons Zero
 
-import time
-import urllib.request, urllib.parse, urllib.error
 import curses
 import curses.panel
-import json
-
-class CacheFetcher:
-	def __init__(self):
-		self.cache = {}
-
-	def fetch(self, url, max_age=0):
-		if url in self.cache:
-			if int(time.time()) - self.cache[url][0] < max_age:
-				return self.cache[url][1]
-
-		# Retrieve and cache
-		try:
-			data = urllib.request.urlopen(url).read()
-		except IOError:
-			# Return last cache if we have it
-			if url in self.cache:
-				return self.cache[url][1]
-			else:
-				data = None
-
-		# PUT TRY AROUND THIS
-		self.cache[url] = (time.time(), data)
-		return data
-
-# Holds configuration and code for fetching weather
-class Weather:
-	def __init__(self, city='', metric=False, cache_time=60*60):
-		self.unit = 'f'
-		if metric:
-			self.unit = 'c'
-		self.CACHE_TIME = cache_time
-		self.API = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22{}%22)%20and%20u%3D%22{}%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'.format(urllib.parse.quote(city), self.unit)
-		self.fetcher = CacheFetcher()
-
-	def get(self):
-		response = self.fetcher.fetch(self.API, self.CACHE_TIME).decode()
-		return json.loads(response)
+import time
+import weather
 
 def make_panel(h,l, y,x, str):
 	win = curses.newwin(h,l, y,x)
@@ -58,7 +20,6 @@ def make_panel(h,l, y,x, str):
 	return win, panel
 
 def test(stdscr):
-
 	# Seconds
 	REFRESH_DELAY = 10
 	#REFRESH_DELAY = 60
@@ -79,7 +40,7 @@ def test(stdscr):
 	weather_win, weather_panel = make_panel(8,75, 3,2, WEATHER_TITLE)
 
 	# APIs and stuff
-	weather = Weather(city=WEATHER_CITY, metric=False)
+	weather_a = weather.Weather(city=WEATHER_CITY, metric=False)
 
 	while True:
 		# ----- BEGIN TIME -----
@@ -87,8 +48,8 @@ def test(stdscr):
 		# ----- END TIME -----
 
 		# ----- BEGIN WEATHER -----
-		w = weather.get()
-		u = weather.unit.upper()
+		w = weather_a.get()
+		u = weather_a.unit.upper()
 
 		x = 2
 		width = 16
@@ -111,3 +72,4 @@ def test(stdscr):
 
 if __name__ == '__main__':
 	curses.wrapper(test)
+
