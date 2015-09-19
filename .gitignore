@@ -6,3 +6,6 @@ Session.vim
 .netrwhist
 *~
 
+
+### Python ###
+__pycache__/
