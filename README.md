@@ -5,7 +5,7 @@ So I made my own that works in a tty.
 
 I have this running on my wall, on a raspberry pi (TTY only).
 
-This requires Python 3.
+This requires Python 3 and has no dependencies.
 
 ## License
 
@@ -15,3 +15,4 @@ worldwide. This software is distributed without any warranty.
 
 You should have received a copy of the CC0 Public Domain Dedication along
 with this software. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
+

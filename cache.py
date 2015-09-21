@@ -3,7 +3,7 @@
 #
 # cache.py - Cache http calls.
 # Author: Chris Barry <chris@barry.im>
-# License:  Creative Commons Zero
+# License: Creative Commons Zero
 
 import time
 import urllib.error
