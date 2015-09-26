@@ -40,6 +40,8 @@ For copyright reasons I can't distribute mine.
 	│└────────────┘                                                             │
 	└───────────────────────────────────────────────────────────────────────────┘
 
+![On a VT220](pic/vt220.jpg)
+
 ## Running
 
 	$ python3 citty.py
