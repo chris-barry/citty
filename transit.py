@@ -95,5 +95,6 @@ class NJTransit:
 				
 		today = times[i:i+limit]
 		overflow = times_tom[0:limit-len(today)]
-		return today + overflow
+		dest = ['00:00']*len(today+overflow)
+		return zip(today + overflow,dest)
 

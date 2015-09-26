@@ -39,7 +39,7 @@ def test(stdscr):
 
 	# Panels
 	weather_win, weather_panel = make_panel(8,75, 3,2, WEATHER_TITLE)
-	transit_win, transit_panel = make_panel(10,15, 11,2, TRANSIT_TITLE)
+	transit_win, transit_panel = make_panel(15,21, 11,2, TRANSIT_TITLE)
 
 	# APIs and stuff
 	weather_api = weather.Weather(city=WEATHER_CITY, metric=False)
@@ -68,7 +68,8 @@ def test(stdscr):
 		# ----- BEGIN TRANSIT -----
 		i = 1
 		for t in transit_api.get_times():
-			transit_win.addstr(2+i,2,t)
+			#transit_win.addstr(2+i,2,t[0]+' -> '+t[1])
+			transit_win.addstr(2+i,2,t[0])
 			i = i + 1
 		# ----- END TRANSIT -----
 
