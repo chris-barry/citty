@@ -6,9 +6,11 @@ Right now this only shows the weather and public transit times ([GTFS][gtfs] for
 I was inspired by [HackLab][hacklab]'s slick status screen, but didn't want to have a touch screen.
 So I made my own that works in a TTY.
 
-I have this running on my wall, on a [Raspberry Pi][pi] attached to a [VT220][vt220].
+I have this running in my living room, on a [Raspberry Pi][pi] attached to a [VT220][vt220].
 
 This requires Python 3 and has no dependencies.
+This does however require a GTFS file in the `gtfs/` folder.
+For copyright reasons I can't distribute mine.
 
 [gtfs]: https://developers.google.com/transit/gtfs/
 [hacklab]: https://hacklab.to/
