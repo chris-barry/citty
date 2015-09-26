@@ -9,6 +9,7 @@ Session.vim
 
 ### Python ###
 __pycache__/
+*.pyc
 
 ### GTFS Data ###
 gtfs/*.zip
